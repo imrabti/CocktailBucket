@@ -52,6 +52,14 @@ struct BucketListDetail: View {
                     }
                     .tint(.gray)
                 }
+                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                    Button {
+                        bucketList[cocktail.id] = nil
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                    .tint(.red)
+                }
             }
         }
         .searchable(text: $search)

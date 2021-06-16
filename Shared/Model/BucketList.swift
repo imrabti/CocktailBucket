@@ -12,7 +12,7 @@ struct BucketList: Codable, Identifiable {
     var name: String
     var cocktails: [Cocktail]
     
-    subscript(cocktailId: Cocktail.ID?) -> Cocktail {
+    subscript(cocktailId: Cocktail.ID?) -> Cocktail? {
         get {
             if let id = cocktailId {
                 return cocktails.first(where: { $0.id == id }) ?? .defaultCocktail
@@ -22,10 +22,17 @@ struct BucketList: Codable, Identifiable {
 
         set(newValue) {
             if let id = cocktailId {
+                guard let newValue = newValue else {
+                    guard let index = cocktails.firstIndex(where: { $0.id == id }) else { return }
+                    cocktails.remove(at: index)
+                    return
+                }
+                
                 guard let index = cocktails.firstIndex(where: { $0.id == id }) else {
                     cocktails.append(newValue)
                     return
                 }
+                
                 cocktails[index] = newValue
             }
         }
