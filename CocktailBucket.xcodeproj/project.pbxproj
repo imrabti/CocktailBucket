@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F9629754267A222500BA814A /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9629753267A222500BA814A /* Step.swift */; };
+		F9629755267A222500BA814A /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9629753267A222500BA814A /* Step.swift */; };
+		F9629757267A23A200BA814A /* CocktailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9629756267A23A200BA814A /* CocktailView.swift */; };
+		F9629758267A23A200BA814A /* CocktailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9629756267A23A200BA814A /* CocktailView.swift */; };
 		F9CD5D182679CBF0008AED32 /* CocktailBucket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D072679CBEF008AED32 /* CocktailBucket.xcdatamodeld */; };
 		F9CD5D192679CBF0008AED32 /* CocktailBucket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D072679CBEF008AED32 /* CocktailBucket.xcdatamodeld */; };
 		F9CD5D1A2679CBF0008AED32 /* CocktailBucketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D092679CBEF008AED32 /* CocktailBucketApp.swift */; };
@@ -17,9 +21,25 @@
 		F9CD5D1F2679CBF0008AED32 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D0B2679CBEF008AED32 /* Persistence.swift */; };
 		F9CD5D202679CBF0008AED32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9CD5D0C2679CBF0008AED32 /* Assets.xcassets */; };
 		F9CD5D212679CBF0008AED32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9CD5D0C2679CBF0008AED32 /* Assets.xcassets */; };
+		F9CD5D2C2679CD9E008AED32 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D2B2679CD9E008AED32 /* Cocktail.swift */; };
+		F9CD5D2D2679CD9E008AED32 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D2B2679CD9E008AED32 /* Cocktail.swift */; };
+		F9CD5D2F2679CDAF008AED32 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D2E2679CDAF008AED32 /* Ingredient.swift */; };
+		F9CD5D302679CDAF008AED32 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D2E2679CDAF008AED32 /* Ingredient.swift */; };
+		F9CD5D352679D00A008AED32 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D342679D00A008AED32 /* BucketList.swift */; };
+		F9CD5D362679D00A008AED32 /* BucketList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D342679D00A008AED32 /* BucketList.swift */; };
+		F9CD5D382679D237008AED32 /* CocktailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D372679D237008AED32 /* CocktailStore.swift */; };
+		F9CD5D392679D237008AED32 /* CocktailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D372679D237008AED32 /* CocktailStore.swift */; };
+		F9CD5D3C2679E5CE008AED32 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D3B2679E5CE008AED32 /* Sidebar.swift */; };
+		F9CD5D3D2679E5CE008AED32 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D3B2679E5CE008AED32 /* Sidebar.swift */; };
+		F9CD5D3F2679E5FA008AED32 /* BucketListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D3E2679E5FA008AED32 /* BucketListDetail.swift */; };
+		F9CD5D402679E5FA008AED32 /* BucketListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D3E2679E5FA008AED32 /* BucketListDetail.swift */; };
+		F9CD5D422679E61C008AED32 /* EditCocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D412679E61C008AED32 /* EditCocktail.swift */; };
+		F9CD5D432679E61C008AED32 /* EditCocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D412679E61C008AED32 /* EditCocktail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F9629753267A222500BA814A /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		F9629756267A23A200BA814A /* CocktailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailView.swift; sourceTree = "<group>"; };
 		F9CD5D082679CBEF008AED32 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		F9CD5D092679CBEF008AED32 /* CocktailBucketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailBucketApp.swift; sourceTree = "<group>"; };
 		F9CD5D0A2679CBEF008AED32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,6 +47,13 @@
 		F9CD5D0C2679CBF0008AED32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9CD5D112679CBF0008AED32 /* CocktailBucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocktailBucket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9CD5D172679CBF0008AED32 /* CocktailBucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocktailBucket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9CD5D2B2679CD9E008AED32 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
+		F9CD5D2E2679CDAF008AED32 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		F9CD5D342679D00A008AED32 /* BucketList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketList.swift; sourceTree = "<group>"; };
+		F9CD5D372679D237008AED32 /* CocktailStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailStore.swift; sourceTree = "<group>"; };
+		F9CD5D3B2679E5CE008AED32 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		F9CD5D3E2679E5FA008AED32 /* BucketListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListDetail.swift; sourceTree = "<group>"; };
+		F9CD5D412679E61C008AED32 /* EditCocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCocktail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +85,9 @@
 		F9CD5D062679CBEF008AED32 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F9CD5D3A2679E5A1008AED32 /* Views */,
+				F9CD5D2A2679CD78008AED32 /* Model */,
 				F9CD5D092679CBEF008AED32 /* CocktailBucketApp.swift */,
-				F9CD5D0A2679CBEF008AED32 /* ContentView.swift */,
 				F9CD5D0B2679CBEF008AED32 /* Persistence.swift */,
 				F9CD5D0C2679CBF0008AED32 /* Assets.xcassets */,
 				F9CD5D072679CBEF008AED32 /* CocktailBucket.xcdatamodeld */,
@@ -74,6 +102,30 @@
 				F9CD5D172679CBF0008AED32 /* CocktailBucket.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F9CD5D2A2679CD78008AED32 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F9CD5D342679D00A008AED32 /* BucketList.swift */,
+				F9CD5D2B2679CD9E008AED32 /* Cocktail.swift */,
+				F9CD5D2E2679CDAF008AED32 /* Ingredient.swift */,
+				F9CD5D372679D237008AED32 /* CocktailStore.swift */,
+				F9629753267A222500BA814A /* Step.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F9CD5D3A2679E5A1008AED32 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F9CD5D0A2679CBEF008AED32 /* ContentView.swift */,
+				F9CD5D3B2679E5CE008AED32 /* Sidebar.swift */,
+				F9CD5D3E2679E5FA008AED32 /* BucketListDetail.swift */,
+				F9CD5D412679E61C008AED32 /* EditCocktail.swift */,
+				F9629756267A23A200BA814A /* CocktailView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,9 +226,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9CD5D3F2679E5FA008AED32 /* BucketListDetail.swift in Sources */,
 				F9CD5D182679CBF0008AED32 /* CocktailBucket.xcdatamodeld in Sources */,
 				F9CD5D1E2679CBF0008AED32 /* Persistence.swift in Sources */,
+				F9CD5D2F2679CDAF008AED32 /* Ingredient.swift in Sources */,
+				F9CD5D422679E61C008AED32 /* EditCocktail.swift in Sources */,
+				F9629754267A222500BA814A /* Step.swift in Sources */,
 				F9CD5D1A2679CBF0008AED32 /* CocktailBucketApp.swift in Sources */,
+				F9CD5D382679D237008AED32 /* CocktailStore.swift in Sources */,
+				F9629757267A23A200BA814A /* CocktailView.swift in Sources */,
+				F9CD5D352679D00A008AED32 /* BucketList.swift in Sources */,
+				F9CD5D2C2679CD9E008AED32 /* Cocktail.swift in Sources */,
+				F9CD5D3C2679E5CE008AED32 /* Sidebar.swift in Sources */,
 				F9CD5D1C2679CBF0008AED32 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,9 +246,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9CD5D402679E5FA008AED32 /* BucketListDetail.swift in Sources */,
 				F9CD5D192679CBF0008AED32 /* CocktailBucket.xcdatamodeld in Sources */,
 				F9CD5D1F2679CBF0008AED32 /* Persistence.swift in Sources */,
+				F9CD5D302679CDAF008AED32 /* Ingredient.swift in Sources */,
+				F9CD5D432679E61C008AED32 /* EditCocktail.swift in Sources */,
+				F9629755267A222500BA814A /* Step.swift in Sources */,
 				F9CD5D1B2679CBF0008AED32 /* CocktailBucketApp.swift in Sources */,
+				F9CD5D392679D237008AED32 /* CocktailStore.swift in Sources */,
+				F9629758267A23A200BA814A /* CocktailView.swift in Sources */,
+				F9CD5D362679D00A008AED32 /* BucketList.swift in Sources */,
+				F9CD5D2D2679CD9E008AED32 /* Cocktail.swift in Sources */,
+				F9CD5D3D2679E5CE008AED32 /* Sidebar.swift in Sources */,
 				F9CD5D1D2679CBF0008AED32 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,7 +391,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -351,7 +421,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

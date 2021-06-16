@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct CocktailBucketApp: App {
-    let persistenceController = PersistenceController.shared
+    @StateObject private var store = CocktailStore()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(store)
         }
     }
 }
