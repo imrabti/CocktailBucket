@@ -55,7 +55,7 @@ struct EditCocktail: View {
                         }
                         Button("Add Step") {
                             let id = UUID().uuidString
-                            cocktail.steps.append(Step(id: UUID().uuidString))
+                            cocktail.steps.append(Step(id: id))
                             focus = id
                         }
                     }
