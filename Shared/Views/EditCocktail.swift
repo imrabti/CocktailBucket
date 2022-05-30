@@ -26,7 +26,6 @@ struct EditCocktail: View {
                     TextField("Name", text: $cocktail.name)
                         .autocapitalization(.words)
                         .disableAutocorrection(true)
-                        .focused($focus, equals: "Name")
 
                     Toggle("Contain alcohol 🥴", isOn: $cocktail.alcohol)
                 }
@@ -34,10 +33,16 @@ struct EditCocktail: View {
                 DisclosureGroup(isExpanded: $ingredientsExpanded) {
                     VStack {
                         List($cocktail.ingredients) { $ingredient in
-                            IngredientView(ingredient: $ingredient)
+                            IngredientView(focus: $focus, ingredient: $ingredient)
                         }
                         Button("Add Ingredient") {
-                            cocktail.ingredients.append(Ingredient(id: UUID().uuidString))
+                            let id = UUID().uuidString
+                            cocktail.ingredients.append(Ingredient(id: id))
+                            
+                            // Workaround delay for the focus to work
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                focus = id
+                            }
                         }
                     }
                 } label: {
@@ -56,7 +61,11 @@ struct EditCocktail: View {
                         Button("Add Step") {
                             let id = UUID().uuidString
                             cocktail.steps.append(Step(id: id))
-                            focus = id
+                            
+                            // Workaround delay for the focus to work
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                focus = id
+                            }
                         }
                     }
                 } label: {
@@ -78,13 +87,13 @@ struct EditCocktail: View {
                     }
                 }
             }
-            onAppear { focus = "Name" }
         }
     }
 }
 
 struct IngredientView: View {
     
+    var focus: FocusState<String?>.Binding
     @Binding var ingredient: Ingredient
     
     var body: some View {
@@ -93,6 +102,7 @@ struct IngredientView: View {
                 TextField("Ingredient", text: $ingredient.name)
                     .autocapitalization(.words)
                     .disableAutocorrection(true)
+                    .focused(focus, equals: ingredient.id)
                 
                 TextField("Quantity", value: $ingredient.quantity, formatter: NumberFormatter())
                     .multilineTextAlignment(.trailing)
