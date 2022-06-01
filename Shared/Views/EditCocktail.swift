@@ -13,6 +13,7 @@ struct EditCocktail: View {
     
     @Binding var bucketList: BucketList
     @Binding var cocktail: Cocktail
+    @Binding var cocktailCD: CocktailCD
     
     @State private var ingredientsExpanded = true
     @State private var stepsExpanded = true
