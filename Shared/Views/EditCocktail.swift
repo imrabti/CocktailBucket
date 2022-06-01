@@ -10,10 +10,14 @@ import SwiftUI
 struct EditCocktail: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) private var viewContext
     
-    @Binding var bucketList: BucketList
-    @Binding var cocktail: Cocktail
-    @Binding var cocktailCD: CocktailCD
+    @Binding var cocktailCD: CocktailCD!
+    
+    @State private var name = ""
+    @State private var withAlcohol = false
+    @State private var ingredients: [IngredientVO] = []
+    @State private var steps: [StepVO] = []
     
     @State private var ingredientsExpanded = true
     @State private var stepsExpanded = true
@@ -24,25 +28,25 @@ struct EditCocktail: View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Name", text: $cocktail.name)
+                    TextField("Name", text: $name)
                         .autocapitalization(.words)
                         .disableAutocorrection(true)
 
-                    Toggle("Contain alcohol 🥴", isOn: $cocktail.alcohol)
+                    Toggle("Contain alcohol 🥴", isOn: $withAlcohol)
                 }
                 
                 DisclosureGroup(isExpanded: $ingredientsExpanded) {
                     VStack {
-                        List($cocktail.ingredients) { $ingredient in
+                        List($ingredients) { $ingredient in
                             IngredientView(focus: $focus, ingredient: $ingredient)
                         }
                         Button("Add Ingredient") {
-                            let id = UUID().uuidString
-                            cocktail.ingredients.append(Ingredient(id: id))
+                            let id = UUID()
+                            ingredients.append(IngredientVO(id: id))
                             
                             // Workaround delay for the focus to work
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                focus = id
+                                focus = id.uuidString
                             }
                         }
                     }
@@ -52,20 +56,20 @@ struct EditCocktail: View {
                 
                 DisclosureGroup(isExpanded: $stepsExpanded) {
                     VStack {
-                        List($cocktail.steps) { $step in
+                        List($steps) { $step in
                             VStack{
-                                TextEditor(text: $step.value)
-                                    .focused($focus, equals: step.id)
+                                TextEditor(text: $step.step)
+                                    .focused($focus, equals: step.id?.uuidString)
                                 Divider()
                             }
                         }
                         Button("Add Step") {
-                            let id = UUID().uuidString
-                            cocktail.steps.append(Step(id: id))
+                            let id = UUID()
+                            steps.append(StepVO(id: id))
                             
                             // Workaround delay for the focus to work
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                focus = id
+                                focus = id.uuidString
                             }
                         }
                     }
@@ -73,19 +77,43 @@ struct EditCocktail: View {
                     Text("Steps").font(.title3).bold()
                 }
             }
-            .navigationTitle("\(cocktail.id == nil ? "New" : "Update") Cocktail")
+            .navigationTitle("\(cocktailCD.uuid == nil ? "New" : "Update") Cocktail")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") { presentationMode.wrappedValue.dismiss() }
+                    Button("Cancel") {
+                        viewContext.rollback()
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        let id = cocktail.id ?? UUID().uuidString
-                        cocktail.id = id
-                        bucketList[id] = cocktail
+                        if cocktailCD.uuid == nil {
+                            cocktailCD.uuid = UUID()
+                        }
+                        
+                        cocktailCD.name = name
+                        cocktailCD.flags = withAlcohol ? 1 : 0
+                        // TODO: Save steps
+                        // TODO: Save ingredients
+                        
                         presentationMode.wrappedValue.dismiss()
                     }
+                }
+            }
+            .onAppear {
+                name = cocktailCD.wrappedName
+                withAlcohol = cocktailCD.flags == 1
+                ingredients = cocktailCD.wrappedIngredients.map {
+                    IngredientVO(
+                        id: $0.uuid,
+                        name: $0.wrappedName,
+                        quantity: $0.quantity,
+                        unit: $0.unitEnum
+                    )
+                }
+                steps = cocktailCD.wrappedSteps.map {
+                    StepVO(id: $0.uuid, step: $0.wrappedStep)
                 }
             }
         }
@@ -95,7 +123,7 @@ struct EditCocktail: View {
 struct IngredientView: View {
     
     var focus: FocusState<String?>.Binding
-    @Binding var ingredient: Ingredient
+    @Binding var ingredient: IngredientVO
     
     var body: some View {
         VStack {
@@ -103,7 +131,7 @@ struct IngredientView: View {
                 TextField("Ingredient", text: $ingredient.name)
                     .autocapitalization(.words)
                     .disableAutocorrection(true)
-                    .focused(focus, equals: ingredient.id)
+                    .focused(focus, equals: ingredient.id?.uuidString)
                 
                 TextField("Quantity", value: $ingredient.quantity, formatter: NumberFormatter())
                     .multilineTextAlignment(.trailing)

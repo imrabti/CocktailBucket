@@ -14,6 +14,6 @@ extension BucketListCD {
     
     var wrappedCocktails: [CocktailCD] {
         (cocktails as? Set<CocktailCD> ?? [])
-            .sorted(by: { $0.name ?? "" < $1.name ?? "" })
+            .sorted(by: { $0.wrappedName < $1.wrappedName })
     }
 }

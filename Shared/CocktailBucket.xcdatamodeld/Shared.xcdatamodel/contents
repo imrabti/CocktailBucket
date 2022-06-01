@@ -8,25 +8,26 @@
     <entity name="CocktailCD" representedClassName="CocktailCD" syncable="YES" codeGenerationType="class">
         <attribute name="flags" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="bucketList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BucketListCD" inverseName="cocktails" inverseEntity="BucketListCD"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IngredientCD" inverseName="cocktail" inverseEntity="IngredientCD"/>
         <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StepCD" inverseName="cocktail" inverseEntity="StepCD"/>
     </entity>
     <entity name="IngredientCD" representedClassName="IngredientCD" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="quantity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="unit" optional="YES" attributeType="String"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="cocktail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CocktailCD" inverseName="ingredients" inverseEntity="CocktailCD"/>
     </entity>
     <entity name="StepCD" representedClassName="StepCD" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="step" optional="YES" attributeType="String"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="cocktail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CocktailCD" inverseName="steps" inverseEntity="CocktailCD"/>
     </entity>
     <elements>
         <element name="BucketListCD" positionX="-63" positionY="0" width="128" height="74"/>
-        <element name="CocktailCD" positionX="-54" positionY="9" width="128" height="104"/>
+        <element name="CocktailCD" positionX="-54" positionY="9" width="128" height="119"/>
         <element name="IngredientCD" positionX="-36" positionY="18" width="128" height="104"/>
         <element name="StepCD" positionX="-18" positionY="27" width="128" height="74"/>
     </elements>

@@ -39,6 +39,10 @@
 		F9F9D41628466ACC00DC4B06 /* BucketListCD+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41428466ACC00DC4B06 /* BucketListCD+Extensions.swift */; };
 		F9F9D41828466DB900DC4B06 /* Cocktail+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41728466DB900DC4B06 /* Cocktail+Extensions.swift */; };
 		F9F9D41928466DB900DC4B06 /* Cocktail+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41728466DB900DC4B06 /* Cocktail+Extensions.swift */; };
+		F9F9D41B28473C7A00DC4B06 /* Ingredient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41A28473C7A00DC4B06 /* Ingredient+Extensions.swift */; };
+		F9F9D41C28473C7A00DC4B06 /* Ingredient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41A28473C7A00DC4B06 /* Ingredient+Extensions.swift */; };
+		F9F9D41E28473D1F00DC4B06 /* Step+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41D28473D1F00DC4B06 /* Step+Extensions.swift */; };
+		F9F9D41F28473D1F00DC4B06 /* Step+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41D28473D1F00DC4B06 /* Step+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +64,8 @@
 		F9F9D4112844B26800DC4B06 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F9F9D41428466ACC00DC4B06 /* BucketListCD+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BucketListCD+Extensions.swift"; sourceTree = "<group>"; };
 		F9F9D41728466DB900DC4B06 /* Cocktail+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cocktail+Extensions.swift"; sourceTree = "<group>"; };
+		F9F9D41A28473C7A00DC4B06 /* Ingredient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+Extensions.swift"; sourceTree = "<group>"; };
+		F9F9D41D28473D1F00DC4B06 /* Step+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Step+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,8 @@
 				F9629753267A222500BA814A /* Step.swift */,
 				F9F9D41428466ACC00DC4B06 /* BucketListCD+Extensions.swift */,
 				F9F9D41728466DB900DC4B06 /* Cocktail+Extensions.swift */,
+				F9F9D41A28473C7A00DC4B06 /* Ingredient+Extensions.swift */,
+				F9F9D41D28473D1F00DC4B06 /* Step+Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F9D41E28473D1F00DC4B06 /* Step+Extensions.swift in Sources */,
 				F9CD5D3F2679E5FA008AED32 /* BucketListDetail.swift in Sources */,
 				F9CD5D182679CBF0008AED32 /* CocktailBucket.xcdatamodeld in Sources */,
 				F9CD5D2F2679CDAF008AED32 /* Ingredient.swift in Sources */,
@@ -244,6 +253,7 @@
 				F9CD5D382679D237008AED32 /* CocktailStore.swift in Sources */,
 				F9F9D4122844B26800DC4B06 /* Persistence.swift in Sources */,
 				F9629757267A23A200BA814A /* CocktailView.swift in Sources */,
+				F9F9D41B28473C7A00DC4B06 /* Ingredient+Extensions.swift in Sources */,
 				F9CD5D352679D00A008AED32 /* BucketList.swift in Sources */,
 				F9F9D41528466ACC00DC4B06 /* BucketListCD+Extensions.swift in Sources */,
 				F9CD5D2C2679CD9E008AED32 /* Cocktail.swift in Sources */,
@@ -256,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F9D41F28473D1F00DC4B06 /* Step+Extensions.swift in Sources */,
 				F9CD5D402679E5FA008AED32 /* BucketListDetail.swift in Sources */,
 				F9CD5D192679CBF0008AED32 /* CocktailBucket.xcdatamodeld in Sources */,
 				F9CD5D302679CDAF008AED32 /* Ingredient.swift in Sources */,
@@ -266,6 +277,7 @@
 				F9CD5D392679D237008AED32 /* CocktailStore.swift in Sources */,
 				F9F9D4132844B26800DC4B06 /* Persistence.swift in Sources */,
 				F9629758267A23A200BA814A /* CocktailView.swift in Sources */,
+				F9F9D41C28473C7A00DC4B06 /* Ingredient+Extensions.swift in Sources */,
 				F9CD5D362679D00A008AED32 /* BucketList.swift in Sources */,
 				F9F9D41628466ACC00DC4B06 /* BucketListCD+Extensions.swift in Sources */,
 				F9CD5D2D2679CD9E008AED32 /* Cocktail.swift in Sources */,

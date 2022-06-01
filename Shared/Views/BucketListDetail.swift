@@ -37,16 +37,16 @@ struct BucketListDetail: View {
                     VStack(alignment: .leading) {
                         Text(cocktail.wrappedName)
                         
-//                        HStack {
-//                            ForEach(cocktail.ingredients.prefix(4)) { ingredient in
-//                                Text(ingredient.name)
-//                                    .font(.caption).bold()
-//                                    .padding(3)
-//                                    .foregroundColor(Color.white)
-//                                    .background(Color.accentColor.opacity(0.6))
-//                                    .cornerRadius(6)
-//                            }
-//                        }
+                        HStack {
+                            ForEach(cocktail.wrappedIngredients.prefix(4)) { ingredient in
+                                Text(ingredient.wrappedName)
+                                    .font(.caption).bold()
+                                    .padding(3)
+                                    .foregroundColor(Color.white)
+                                    .background(Color.accentColor.opacity(0.6))
+                                    .cornerRadius(6)
+                            }
+                        }
                     }
                 }
                 .swipeActions {
@@ -76,9 +76,7 @@ struct BucketListDetail: View {
                 Button {
                     editMode = true
                     currentCocktail = CocktailCD(context: viewContext)
-                    currentCocktail?.name = "some new drink ?>?>"
                     currentCocktail?.bucketList = bucketList
-                    try? viewContext.save()
                 } label: {
                     Label("Add new", systemImage: "plus")
                 }
@@ -93,8 +91,8 @@ struct BucketListDetail: View {
             cocktails.nsPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         }
         .onAppear { cocktails.nsPredicate = predicate }
-//        .sheet(isPresented: $editMode) {
-//            EditCocktail(bucketList: $bucketList, cocktail: $currentCocktail)
-//        }
+        .sheet(isPresented: $editMode) {
+            EditCocktail(cocktailCD: $currentCocktail)
+        }
     }
 }
