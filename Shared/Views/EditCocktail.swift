@@ -59,7 +59,7 @@ struct EditCocktail: View {
                         List($steps) { $step in
                             VStack{
                                 TextEditor(text: $step.step)
-                                    .focused($focus, equals: step.id?.uuidString)
+                                    .focused($focus, equals: step.id.uuidString)
                                 Divider()
                             }
                         }
@@ -88,35 +88,66 @@ struct EditCocktail: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        if cocktailCD.uuid == nil {
-                            cocktailCD.uuid = UUID()
-                        }
-                        
-                        cocktailCD.name = name
-                        cocktailCD.flags = withAlcohol ? 1 : 0
-                        // TODO: Save steps
-                        // TODO: Save ingredients
-                        
+                        createOrUpdateCocktail()
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
-            .onAppear {
-                name = cocktailCD.wrappedName
-                withAlcohol = cocktailCD.flags == 1
-                ingredients = cocktailCD.wrappedIngredients.map {
-                    IngredientVO(
-                        id: $0.uuid,
-                        name: $0.wrappedName,
-                        quantity: $0.quantity,
-                        unit: $0.unitEnum
-                    )
-                }
-                steps = cocktailCD.wrappedSteps.map {
-                    StepVO(id: $0.uuid, step: $0.wrappedStep)
-                }
+            .onAppear(perform: fetchCocktailData)
+        }
+    }
+    
+    private func fetchCocktailData() {
+        name = cocktailCD.wrappedName
+        withAlcohol = cocktailCD.flags == 1
+        ingredients = cocktailCD.wrappedIngredients.map {
+            IngredientVO(
+                id: $0.uuid!,
+                name: $0.wrappedName,
+                quantity: $0.quantity,
+                unit: $0.unitEnum
+            )
+        }
+        steps = cocktailCD.wrappedSteps.map {
+            StepVO(id: $0.uuid!, step: $0.wrappedStep)
+        }
+    }
+    
+    private func createOrUpdateCocktail() {
+        if cocktailCD.uuid == nil {
+            cocktailCD.uuid = UUID()
+        }
+        
+        cocktailCD.name = name
+        cocktailCD.flags = withAlcohol ? 1 : 0
+        
+        for ingredient in ingredients {
+            if let existing = cocktailCD.wrappedIngredients.first(where: { $0.uuid == ingredient.id }) {
+                existing.name = ingredient.name
+                existing.unitEnum = ingredient.unit
+                existing.quantity = ingredient.quantity ?? 0
+            } else {
+                let newIngredient = IngredientCD(context: viewContext)
+                newIngredient.uuid = ingredient.id
+                newIngredient.cocktail = cocktailCD
+                newIngredient.name = ingredient.name
+                newIngredient.unitEnum = ingredient.unit
+                newIngredient.quantity = ingredient.quantity ?? 0
             }
         }
+        
+        for step in steps {
+            if let existing = cocktailCD.wrappedSteps.first(where: { $0.uuid == step.id} ) {
+                existing.step = step.step
+            } else {
+                let newStep = StepCD(context: viewContext)
+                newStep.uuid = step.id
+                newStep.cocktail = cocktailCD
+                newStep.step = step.step
+            }
+        }
+        
+        try? viewContext.save()
     }
 }
 
@@ -131,7 +162,7 @@ struct IngredientView: View {
                 TextField("Ingredient", text: $ingredient.name)
                     .autocapitalization(.words)
                     .disableAutocorrection(true)
-                    .focused(focus, equals: ingredient.id?.uuidString)
+                    .focused(focus, equals: ingredient.id.uuidString)
                 
                 TextField("Quantity", value: $ingredient.quantity, formatter: NumberFormatter())
                     .multilineTextAlignment(.trailing)

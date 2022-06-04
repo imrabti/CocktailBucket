@@ -39,13 +39,13 @@ struct Ingredient: Codable, Identifiable {
 }
 
 struct IngredientVO: Codable, Identifiable {
-    var id: UUID?
+    var id: UUID
     var name: String = ""
     var quantity: Double?
     var unit: Unit = .ml
 }
 
 struct StepVO: Codable, Identifiable {
-    var id: UUID?
+    var id: UUID
     var step: String = ""
 }
