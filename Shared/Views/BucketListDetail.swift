@@ -12,17 +12,17 @@ struct BucketListDetail: View {
     @Environment(\.isSearching) private var isSearching
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \CocktailCD.name, ascending: true)])
-    private var cocktails: FetchedResults<CocktailCD>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Cocktail.name, ascending: true)])
+    private var cocktails: FetchedResults<Cocktail>
     
     @State private var search = ""
     @State private var editMode = false
-    @State private var currentCocktail: CocktailCD?
+    @State private var currentCocktail: Cocktail?
     
-    var bucketList: BucketListCD
+    var bucketList: BucketList
     var predicate: NSPredicate
     
-    init(bucketList: BucketListCD) {
+    init(bucketList: BucketList) {
         self.bucketList = bucketList
         self.predicate = NSPredicate(format: "bucketList == %@", bucketList)
     }
@@ -74,7 +74,7 @@ struct BucketListDetail: View {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
                     editMode = true
-                    currentCocktail = CocktailCD(context: viewContext)
+                    currentCocktail = Cocktail(context: viewContext)
                     currentCocktail?.bucketList = bucketList
                 } label: {
                     Label("Add new", systemImage: "plus")
@@ -91,7 +91,7 @@ struct BucketListDetail: View {
         }
         .onAppear { cocktails.nsPredicate = predicate }
         .sheet(isPresented: $editMode) {
-            EditCocktail(cocktailCD: $currentCocktail)
+            EditCocktail(cocktail: $currentCocktail)
         }
     }
 }

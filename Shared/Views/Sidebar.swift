@@ -11,12 +11,12 @@ import CoreData
 struct Sidebar: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \BucketListCD.created, ascending: true)])
-    private var buckets: FetchedResults<BucketListCD>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \BucketList.created, ascending: true)])
+    private var buckets: FetchedResults<BucketList>
     
     @State private var addNewItem = false
     @State private var name: String = ""
-    @State private var itemToAddOrEdit: BucketListCD?
+    @State private var itemToAddOrEdit: BucketList?
     @FocusState private var focus: String?
     
     var body: some View {
@@ -63,7 +63,7 @@ struct Sidebar: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    itemToAddOrEdit = BucketListCD(context: viewContext)
+                    itemToAddOrEdit = BucketList(context: viewContext)
                     itemToAddOrEdit?.created = Date()
                     try? viewContext.save()
                     focus = "name"

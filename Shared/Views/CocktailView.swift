@@ -14,7 +14,7 @@ struct CocktailView: View {
     @State private var ingredientsExpanded = true
     @State private var stepsExpanded = true
     
-    let cocktail: CocktailCD
+    let cocktail: Cocktail
     
     var body: some View {
         VStack {
@@ -71,7 +71,7 @@ struct PicturePlaceHolder: View {
     }
 }
 
-extension StepCD {
+extension Step {
     var markdown: AttributedString {
         try! AttributedString(markdown: wrappedStep)
     }

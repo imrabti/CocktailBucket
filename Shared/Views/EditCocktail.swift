@@ -24,7 +24,7 @@ struct EditCocktail: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var viewContext
     
-    @Binding var cocktailCD: CocktailCD!
+    @Binding var cocktail: Cocktail!
     
     @State private var name = ""
     @State private var withAlcohol = false
@@ -89,7 +89,7 @@ struct EditCocktail: View {
                     Text("Steps").font(.title3).bold()
                 }
             }
-            .navigationTitle("\(cocktailCD.uuid == nil ? "New" : "Update") Cocktail")
+            .navigationTitle("\(cocktail.uuid == nil ? "New" : "Update") Cocktail")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -110,9 +110,9 @@ struct EditCocktail: View {
     }
     
     private func fetchCocktailData() {
-        name = cocktailCD.wrappedName
-        withAlcohol = cocktailCD.flags == 1
-        ingredients = cocktailCD.wrappedIngredients.map {
+        name = cocktail.wrappedName
+        withAlcohol = cocktail.flags == 1
+        ingredients = cocktail.wrappedIngredients.map {
             IngredientVO(
                 id: $0.uuid!,
                 name: $0.wrappedName,
@@ -120,28 +120,28 @@ struct EditCocktail: View {
                 unit: $0.unitEnum
             )
         }
-        steps = cocktailCD.wrappedSteps.map {
+        steps = cocktail.wrappedSteps.map {
             StepVO(id: $0.uuid!, step: $0.wrappedStep)
         }
     }
     
     private func createOrUpdateCocktail() {
-        if cocktailCD.uuid == nil {
-            cocktailCD.uuid = UUID()
+        if cocktail.uuid == nil {
+            cocktail.uuid = UUID()
         }
         
-        cocktailCD.name = name
-        cocktailCD.flags = withAlcohol ? 1 : 0
+        cocktail.name = name
+        cocktail.flags = withAlcohol ? 1 : 0
         
         for ingredient in ingredients {
-            if let existing = cocktailCD.wrappedIngredients.first(where: { $0.uuid == ingredient.id }) {
+            if let existing = cocktail.wrappedIngredients.first(where: { $0.uuid == ingredient.id }) {
                 existing.name = ingredient.name
                 existing.unitEnum = ingredient.unit
                 existing.quantity = ingredient.quantity ?? 0
             } else {
-                let newIngredient = IngredientCD(context: viewContext)
+                let newIngredient = Ingredient(context: viewContext)
                 newIngredient.uuid = ingredient.id
-                newIngredient.cocktail = cocktailCD
+                newIngredient.cocktail = cocktail
                 newIngredient.name = ingredient.name
                 newIngredient.unitEnum = ingredient.unit
                 newIngredient.quantity = ingredient.quantity ?? 0
@@ -149,12 +149,12 @@ struct EditCocktail: View {
         }
         
         for step in steps {
-            if let existing = cocktailCD.wrappedSteps.first(where: { $0.uuid == step.id} ) {
+            if let existing = cocktail.wrappedSteps.first(where: { $0.uuid == step.id} ) {
                 existing.step = step.step
             } else {
-                let newStep = StepCD(context: viewContext)
+                let newStep = Step(context: viewContext)
                 newStep.uuid = step.id
-                newStep.cocktail = cocktailCD
+                newStep.cocktail = cocktail
                 newStep.step = step.step
             }
         }

@@ -7,18 +7,18 @@
 
 import CoreData
 
-extension CocktailCD {
+extension Cocktail {
     var wrappedName: String {
         name ?? ""
     }
     
-    var wrappedIngredients: [IngredientCD] {
-        (ingredients as? Set<IngredientCD> ?? [])
+    var wrappedIngredients: [Ingredient] {
+        (ingredients as? Set<Ingredient> ?? [])
             .sorted(by: { $0.wrappedName < $1.wrappedName })
     }
     
-    var wrappedSteps: [StepCD] {
-        (steps as? Set<StepCD> ?? [])
+    var wrappedSteps: [Step] {
+        (steps as? Set<Step> ?? [])
             .sorted(by: { $0.wrappedStep < $1.wrappedStep })
     }
 }

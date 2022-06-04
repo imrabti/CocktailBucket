@@ -7,7 +7,7 @@
 
 import CoreData
 
-extension StepCD {
+extension Step {
     var wrappedStep: String {
         step ?? ""
     }

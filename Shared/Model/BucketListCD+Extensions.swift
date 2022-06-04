@@ -7,13 +7,13 @@
 
 import CoreData
 
-extension BucketListCD {
+extension BucketList {
     var wrappedName: String {
         name ?? ""
     }
     
-    var wrappedCocktails: [CocktailCD] {
-        (cocktails as? Set<CocktailCD> ?? [])
+    var wrappedCocktails: [Cocktail] {
+        (cocktails as? Set<Cocktail> ?? [])
             .sorted(by: { $0.wrappedName < $1.wrappedName })
     }
 }

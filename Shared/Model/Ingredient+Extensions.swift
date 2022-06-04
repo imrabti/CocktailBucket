@@ -31,7 +31,7 @@ enum Unit: String, Codable, CaseIterable {
     }
 }
 
-extension IngredientCD {
+extension Ingredient {
     var wrappedName: String {
         name ?? ""
     }
