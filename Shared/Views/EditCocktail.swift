@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+struct IngredientVO: Codable, Identifiable {
+    var id: UUID
+    var name: String = ""
+    var quantity: Double?
+    var unit: Unit = .ml
+}
+
+struct StepVO: Codable, Identifiable {
+    var id: UUID
+    var step: String = ""
+}
+
 struct EditCocktail: View {
     
     @Environment(\.presentationMode) var presentationMode

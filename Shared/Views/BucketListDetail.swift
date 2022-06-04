@@ -31,8 +31,7 @@ struct BucketListDetail: View {
         List {
             ForEach(cocktails, id: \.self) { cocktail in
                 NavigationLink {
-//                    CocktailView(cocktail: cocktail)
-                    Text("Hello Cocktail ...")
+                    CocktailView(cocktail: cocktail)
                 } label: {
                     VStack(alignment: .leading) {
                         Text(cocktail.wrappedName)
