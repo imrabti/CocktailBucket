@@ -32,6 +32,7 @@ struct EditCocktail: View {
     @State private var ingredients: [IngredientVO] = []
     @State private var steps: [StepVO] = []
     @State private var picture: UIImage?
+    @State private var pictureHash: String?
     
     @State private var ingredientsExpanded = true
     @State private var stepsExpanded = true
@@ -61,6 +62,13 @@ struct EditCocktail: View {
                                     sourceType = .photoLibrary
                                     editPicture = true
                                 } label: { Label("Photo library", systemImage: "photo.on.rectangle") }
+                            }
+                            
+                            if picture != nil {
+                                Button {
+                                    picture = nil
+                                    pictureHash = nil
+                                } label: { Label("Delete photo", systemImage: "trash") }
                             }
                         } label: {
                             CocktailPictureView(
@@ -139,8 +147,8 @@ struct EditCocktail: View {
                 }
             }
             .onAppear(perform: fetchCocktailData)
-            .sheet(isPresented: $editPicture, onDismiss: pictureLoaded) {
-                ImagePicker(image: $picture, sourceType: $sourceType)
+            .sheet(isPresented: $editPicture) {
+                ImagePicker(image: $picture, pictureHash: $pictureHash, sourceType: $sourceType)
                     .edgesIgnoringSafeArea(.all)
             }
         }
@@ -148,6 +156,7 @@ struct EditCocktail: View {
     
     private func fetchCocktailData() {
         picture = cocktail.wrappedAttachment?.getImage(with: viewContext)
+        pictureHash = cocktail.wrappedAttachment?.attachmentHash
         name = cocktail.wrappedName
         withAlcohol = cocktail.flags == 1
         
@@ -199,11 +208,33 @@ struct EditCocktail: View {
             }
         }
         
+        // Save or update the cocktail picture
+        createOrUpdateCocktailPicture()
+        
         try? viewContext.save()
     }
     
-    private func pictureLoaded() {
-        print("picture changed ....")
+    private func createOrUpdateCocktailPicture() {
+        // In case the picture is nil check if there was an existing picture
+        // this mean that the user have removed the picture for this cocktail
+        guard let picture = picture, let pictureHash = pictureHash else {
+            guard let existingAttachment = cocktail.wrappedAttachment else { return }
+            cocktail.removeFromAttachments(existingAttachment)
+            
+            return
+        }
+        
+        // If the pictureHash is still the same then the picture wasn't updated
+        guard pictureHash != cocktail.wrappedAttachment?.attachmentHash else { return }
+        
+        // Update or create
+        if let existingAttachment = cocktail.wrappedAttachment {
+            
+        } else {
+            let newAttachement = Attachment(context: viewContext)
+            newAttachement.uuid = UUID()
+            newAttachement.cocktail = cocktail
+        }
     }
 }
 

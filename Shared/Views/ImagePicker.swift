@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CropViewController
+import CryptoKit
 
 struct ImagePicker: UIViewControllerRepresentable {
     
@@ -48,6 +49,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
             parent.image = image
+            parent.pictureHash = SHA256.hash(data: image.pngData()!).compactMap { String(format: "%02x", $0) }.joined()
             parent.presentationMode.wrappedValue.dismiss()
         }
         
@@ -58,6 +60,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
+    @Binding var pictureHash: String? 
     @Binding var sourceType: UIImagePickerController.SourceType
     
     func makeCoordinator() -> Coordinator {
