@@ -18,6 +18,21 @@ class PersistenceController: ObservableObject {
         return result
     }()
     
+    static var attachmentFolder: URL = {
+        var url = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent("CocktailBucket", isDirectory: true)
+        url = url.appendingPathComponent("attachments", isDirectory: true)
+        
+        // Create it if it doesn’t exist.
+        if !FileManager.default.fileExists(atPath: url.path) {
+            do {
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("###\(#function): Failed to create thumbnail folder URL: \(error)")
+            }
+        }
+        return url
+    }()
+    
     let container: NSPersistentCloudKitContainer
     
     init(inMemory: Bool = false) {

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Attachement" representedClassName="Attachement" syncable="YES" codeGenerationType="class">
+        <attribute name="thumbnail" optional="YES" transient="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformerName" customClassName="UIKit.UIImage"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="cocktail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cocktail" inverseName="attachements" inverseEntity="Cocktail"/>
+        <relationship name="imageData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ImageData" inverseName="attachement" inverseEntity="ImageData"/>
+    </entity>
     <entity name="BucketList" representedClassName="BucketList" syncable="YES" codeGenerationType="class">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -9,9 +15,14 @@
         <attribute name="flags" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="attachements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attachement" inverseName="cocktail" inverseEntity="Attachement"/>
         <relationship name="bucketList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BucketList" inverseName="cocktails" inverseEntity="BucketList"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="cocktail" inverseEntity="Ingredient"/>
         <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Step" inverseName="cocktail" inverseEntity="Step"/>
+    </entity>
+    <entity name="ImageData" representedClassName="ImageData" syncable="YES" codeGenerationType="class">
+        <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <relationship name="attachement" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Attachement" inverseName="imageData" inverseEntity="Attachement"/>
     </entity>
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -26,9 +37,11 @@
         <relationship name="cocktail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cocktail" inverseName="steps" inverseEntity="Cocktail"/>
     </entity>
     <elements>
-        <element name="BucketList" positionX="-63" positionY="0" width="128" height="74"/>
-        <element name="Cocktail" positionX="-54" positionY="9" width="128" height="119"/>
-        <element name="Ingredient" positionX="-36" positionY="18" width="128" height="104"/>
-        <element name="Step" positionX="-18" positionY="27" width="128" height="74"/>
+        <element name="BucketList" positionX="-26.62109375" positionY="34.3515625" width="128" height="74"/>
+        <element name="Cocktail" positionX="29.6171875" positionY="243.25" width="128" height="28"/>
+        <element name="Ingredient" positionX="-313.0078125" positionY="228.390625" width="128" height="104"/>
+        <element name="Step" positionX="77.33203125" positionY="530.84765625" width="128" height="74"/>
+        <element name="ImageData" positionX="-81" positionY="342" width="128" height="14"/>
+        <element name="Attachement" positionX="-72" positionY="360" width="128" height="14"/>
     </elements>
 </model>
