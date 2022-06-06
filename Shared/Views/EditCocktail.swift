@@ -26,19 +26,52 @@ struct EditCocktail: View {
     
     @Binding var cocktail: Cocktail!
     
+    @State private var sourceType = UIImagePickerController.SourceType.camera
     @State private var name = ""
     @State private var withAlcohol = false
     @State private var ingredients: [IngredientVO] = []
     @State private var steps: [StepVO] = []
+    @State private var picture: UIImage?
     
     @State private var ingredientsExpanded = true
     @State private var stepsExpanded = true
+    @State private var editPicture = false
     
     @FocusState private var focus: String?
     
     var body: some View {
         NavigationView {
             Form {
+                Section {
+                    HStack {
+                        Text("Picture")
+                        
+                        Spacer()
+                        
+                        Menu {
+                            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                                Button {
+                                    sourceType = .camera
+                                    editPicture = true
+                                } label: { Label("Camera", systemImage: "camera") }
+                            }
+                                
+                            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                                Button {
+                                    sourceType = .photoLibrary
+                                    editPicture = true
+                                } label: { Label("Photo library", systemImage: "photo.on.rectangle") }
+                            }
+                        } label: {
+                            CocktailPictureView(
+                                size: 80,
+                                placeholderBackgroundColor: Color(uiColor: .secondarySystemBackground),
+                                picture: $picture
+                            )
+                        }
+                    }
+                }
+                
                 Section {
                     TextField("Name", text: $name)
                         .autocapitalization(.words)
@@ -106,12 +139,18 @@ struct EditCocktail: View {
                 }
             }
             .onAppear(perform: fetchCocktailData)
+            .sheet(isPresented: $editPicture, onDismiss: pictureLoaded) {
+                ImagePicker(image: $picture, sourceType: $sourceType)
+                    .edgesIgnoringSafeArea(.all)
+            }
         }
     }
     
     private func fetchCocktailData() {
+        picture = cocktail.wrappedAttachment?.getImage(with: viewContext)
         name = cocktail.wrappedName
         withAlcohol = cocktail.flags == 1
+        
         ingredients = cocktail.wrappedIngredients.map {
             IngredientVO(
                 id: $0.uuid!,
@@ -120,6 +159,7 @@ struct EditCocktail: View {
                 unit: $0.unitEnum
             )
         }
+        
         steps = cocktail.wrappedSteps.map {
             StepVO(id: $0.uuid!, step: $0.wrappedStep)
         }
@@ -160,6 +200,10 @@ struct EditCocktail: View {
         }
         
         try? viewContext.save()
+    }
+    
+    private func pictureLoaded() {
+        print("picture changed ....")
     }
 }
 

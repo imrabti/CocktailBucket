@@ -21,4 +21,8 @@ extension Cocktail {
         (steps as? Set<Step> ?? [])
             .sorted(by: { $0.wrappedStep < $1.wrappedStep })
     }
+    
+    var wrappedAttachment: Attachment? {
+        (steps as? Set<Attachment> ?? []).first
+    }
 }

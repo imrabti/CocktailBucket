@@ -33,17 +33,24 @@ struct BucketListDetail: View {
                 NavigationLink {
                     CocktailView(cocktail: cocktail)
                 } label: {
-                    VStack(alignment: .leading) {
-                        Text(cocktail.wrappedName)
-                        
-                        HStack {
-                            ForEach(cocktail.wrappedIngredients.prefix(4)) { ingredient in
-                                Text(ingredient.wrappedName)
-                                    .font(.caption).bold()
-                                    .padding(3)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.accentColor.opacity(0.6))
-                                    .cornerRadius(6)
+                    HStack(spacing: 8) {
+                        CocktailPictureView(
+                            size: 50,
+                            placeholderBackgroundColor: Color(uiColor: .secondarySystemBackground),
+                            picture: .constant(cocktail.wrappedAttachment?.getThumbnail())
+                        )
+                        VStack(alignment: .leading) {
+                            Text(cocktail.wrappedName)
+                            
+                            HStack {
+                                ForEach(cocktail.wrappedIngredients.prefix(4)) { ingredient in
+                                    Text(ingredient.wrappedName)
+                                        .font(.caption).bold()
+                                        .padding(3)
+                                        .foregroundColor(Color.white)
+                                        .background(Color.accentColor.opacity(0.6))
+                                        .cornerRadius(6)
+                                }
                             }
                         }
                     }
