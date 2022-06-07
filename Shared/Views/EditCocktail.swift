@@ -212,14 +212,17 @@ struct EditCocktail: View {
         createOrUpdateCocktailPicture()
         
         try? viewContext.save()
+        viewContext.reset()
     }
     
     private func createOrUpdateCocktailPicture() {
         // In case the picture is nil check if there was an existing picture
         // this mean that the user have removed the picture for this cocktail
-        guard let picture = picture, let pictureHash = pictureHash else {
+        guard let pictureData = picture?.jpegData(compressionQuality: 1), let pictureHash = pictureHash else {
             guard let existingAttachment = cocktail.wrappedAttachment else { return }
             cocktail.removeFromAttachments(existingAttachment)
+            existingAttachment.thumbnail = nil
+            viewContext.delete(existingAttachment)
             
             return
         }
@@ -227,13 +230,44 @@ struct EditCocktail: View {
         // If the pictureHash is still the same then the picture wasn't updated
         guard pictureHash != cocktail.wrappedAttachment?.attachmentHash else { return }
         
+        let thumbnailImage = Attachment.thumbnail(from: pictureData, thumbnailPixelSize: 80)
+        var attachment: Attachment!
+        
         // Update or create
         if let existingAttachment = cocktail.wrappedAttachment {
-            
+            attachment = existingAttachment
         } else {
-            let newAttachement = Attachment(context: viewContext)
-            newAttachement.uuid = UUID()
-            newAttachement.cocktail = cocktail
+            attachment = Attachment(context: viewContext)
+            attachment.uuid = UUID()
+            attachment.cocktail = cocktail
+        }
+        
+        attachment.attachmentHash = pictureHash
+        attachment.thumbnail = thumbnailImage
+        
+        // Create or update the ImageData
+        if let existingImageData = attachment.imageData {
+            existingImageData.data = pictureData
+        } else {
+            let newImageData = ImageData(context: viewContext)
+            newImageData.attachment = attachment
+            newImageData.data = pictureData
+        }
+        
+        // Save the full image to the attachment folder and use it as a cache.
+        DispatchQueue.global().async {
+            var nsError: NSError?
+            NSFileCoordinator().coordinate(writingItemAt: attachment.imageURL(), options: .forReplacing, error: &nsError,
+                                           byAccessor: { (newURL: URL) -> Void in
+                do {
+                    try pictureData.write(to: newURL, options: .atomic)
+                } catch {
+                    print("###\(#function): Failed to save an image file: \(attachment.imageURL())")
+                }
+            })
+            if let nsError = nsError {
+                print("###\(#function): \(nsError.localizedDescription)")
+            }
         }
     }
 }
