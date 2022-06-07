@@ -23,6 +23,6 @@ extension Cocktail {
     }
     
     var wrappedAttachment: Attachment? {
-        (steps as? Set<Attachment> ?? []).first
+        (attachments as? Set<Attachment> ?? []).first
     }
 }
