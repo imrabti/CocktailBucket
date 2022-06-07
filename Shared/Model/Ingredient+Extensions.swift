@@ -25,6 +25,17 @@ enum Unit: String, Codable, CaseIterable {
         }
     }
     
+    var defaultQuantity: Double {
+        switch self {
+        case .teeSpoon, .tableSpoon, .piece:
+            return 1
+        case .ml:
+            return 20
+        case .cl:
+            return 4
+        }
+    }
+    
     func format(_ quantity: Double?) -> String {
         guard let quantity = quantity else { return "0 \(label)" }
         return "\(quantity) \(label)"

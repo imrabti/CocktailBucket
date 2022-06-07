@@ -10,26 +10,17 @@ import SwiftUI
 struct CocktailView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) private var viewContext
     
     @State private var ingredientsExpanded = true
     @State private var stepsExpanded = true
+    @State private var picture: UIImage?
     
     let cocktail: Cocktail
     
     var body: some View {
         VStack {
-//            if let pictureUrl = cocktail.picture {
-//                AsyncImage(url: URL(string: pictureUrl)) { image in
-//                    image.resizable()
-//                        .scaledToFill()
-//                        .frame(maxWidth: 200, maxHeight: 200)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10))
-//                    } placeholder: {
-//                        PicturePlaceHolder()
-//                    }
-//            } else {
-                PicturePlaceHolder()
-//            }
+            CocktailPictureView(size: 200, placeholderBackgroundColor: .white, picture: $picture)
             
             List {
                 DisclosureGroup(isExpanded: $ingredientsExpanded) {
@@ -42,31 +33,56 @@ struct CocktailView: View {
                     Text("Ingredients").font(.title3).bold()
                 }
             
-                DisclosureGroup(isExpanded: $stepsExpanded) {
-                    ForEach(cocktail.wrappedSteps) { step in
-                        Text(step.markdown)
+                if !cocktail.wrappedSteps.isEmpty {
+                    DisclosureGroup(isExpanded: $stepsExpanded) {
+                        ForEach(cocktail.wrappedSteps) { step in
+                            Text(step.markdown)
+                        }
+                    } label: {
+                        Text("Steps").font(.title3).bold()
                     }
-                } label: {
-                    Text("Steps").font(.title3).bold()
                 }
             }
         }
         .background(Color(UIColor.systemGroupedBackground))
         .navigationTitle(cocktail.wrappedName)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear { picture = cocktail.wrappedAttachment?.getImage(with: viewContext) }
     }
 }
 
-struct PicturePlaceHolder: View {
+struct CocktailPictureView: View {
+    
+    // MARK : - Properties
+    
+    let size: CGFloat
+    let placeholderBackgroundColor: Color
+    
+    @Binding var picture: UIImage?
+    
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.white)
-                .frame(width: 200, height: 200)
-            Image(systemName: "photo")
-                .foregroundColor(Color(UIColor.systemGray))
-                .font(Font.system(.largeTitle))
+        if let picture = picture {
+            Image(uiImage: picture)
+                .resizable()
+                .scaledToFill()
+                .frame(width: size, height: size)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+        } else {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(placeholderBackgroundColor)
+                    .frame(width: size + 2, height: size + 2)
+
+                if size >= 200 {
+                    Image(systemName: "photo")
+                        .foregroundColor(Color(UIColor.systemGray))
+                        .font(Font.system(.largeTitle))
+                } else {
+                    Image(systemName: "photo")
+                        .foregroundColor(Color(UIColor.systemGray))
+                        .imageScale(.medium)
+                }
+            }
         }
     }
 }

@@ -25,14 +25,19 @@
 		F9CD5D432679E61C008AED32 /* EditCocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D412679E61C008AED32 /* EditCocktail.swift */; };
 		F9F9D4122844B26800DC4B06 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D4112844B26800DC4B06 /* Persistence.swift */; };
 		F9F9D4132844B26800DC4B06 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D4112844B26800DC4B06 /* Persistence.swift */; };
-		F9F9D41528466ACC00DC4B06 /* BucketListCD+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41428466ACC00DC4B06 /* BucketListCD+Extensions.swift */; };
-		F9F9D41628466ACC00DC4B06 /* BucketListCD+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41428466ACC00DC4B06 /* BucketListCD+Extensions.swift */; };
+		F9F9D41528466ACC00DC4B06 /* BucketList+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41428466ACC00DC4B06 /* BucketList+Extensions.swift */; };
+		F9F9D41628466ACC00DC4B06 /* BucketList+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41428466ACC00DC4B06 /* BucketList+Extensions.swift */; };
 		F9F9D41828466DB900DC4B06 /* Cocktail+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41728466DB900DC4B06 /* Cocktail+Extensions.swift */; };
 		F9F9D41928466DB900DC4B06 /* Cocktail+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41728466DB900DC4B06 /* Cocktail+Extensions.swift */; };
 		F9F9D41B28473C7A00DC4B06 /* Ingredient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41A28473C7A00DC4B06 /* Ingredient+Extensions.swift */; };
 		F9F9D41C28473C7A00DC4B06 /* Ingredient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41A28473C7A00DC4B06 /* Ingredient+Extensions.swift */; };
 		F9F9D41E28473D1F00DC4B06 /* Step+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41D28473D1F00DC4B06 /* Step+Extensions.swift */; };
 		F9F9D41F28473D1F00DC4B06 /* Step+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41D28473D1F00DC4B06 /* Step+Extensions.swift */; };
+		F9F9D421284DFC5600DC4B06 /* Attachment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D420284DFC5600DC4B06 /* Attachment+Extensions.swift */; };
+		F9F9D422284DFC5600DC4B06 /* Attachment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D420284DFC5600DC4B06 /* Attachment+Extensions.swift */; };
+		F9F9D424284E066100DC4B06 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D423284E066100DC4B06 /* ImagePicker.swift */; };
+		F9F9D425284E066100DC4B06 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D423284E066100DC4B06 /* ImagePicker.swift */; };
+		F9F9D428284E06A300DC4B06 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = F9F9D427284E06A300DC4B06 /* CropViewController */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,10 +52,12 @@
 		F9CD5D3E2679E5FA008AED32 /* BucketListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListDetail.swift; sourceTree = "<group>"; };
 		F9CD5D412679E61C008AED32 /* EditCocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCocktail.swift; sourceTree = "<group>"; };
 		F9F9D4112844B26800DC4B06 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		F9F9D41428466ACC00DC4B06 /* BucketListCD+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BucketListCD+Extensions.swift"; sourceTree = "<group>"; };
+		F9F9D41428466ACC00DC4B06 /* BucketList+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BucketList+Extensions.swift"; sourceTree = "<group>"; };
 		F9F9D41728466DB900DC4B06 /* Cocktail+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cocktail+Extensions.swift"; sourceTree = "<group>"; };
 		F9F9D41A28473C7A00DC4B06 /* Ingredient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+Extensions.swift"; sourceTree = "<group>"; };
 		F9F9D41D28473D1F00DC4B06 /* Step+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Step+Extensions.swift"; sourceTree = "<group>"; };
+		F9F9D420284DFC5600DC4B06 /* Attachment+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attachment+Extensions.swift"; sourceTree = "<group>"; };
+		F9F9D423284E066100DC4B06 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F9D428284E06A300DC4B06 /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,10 +112,11 @@
 		F9CD5D2A2679CD78008AED32 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F9F9D41428466ACC00DC4B06 /* BucketListCD+Extensions.swift */,
+				F9F9D41428466ACC00DC4B06 /* BucketList+Extensions.swift */,
 				F9F9D41728466DB900DC4B06 /* Cocktail+Extensions.swift */,
 				F9F9D41A28473C7A00DC4B06 /* Ingredient+Extensions.swift */,
 				F9F9D41D28473D1F00DC4B06 /* Step+Extensions.swift */,
+				F9F9D420284DFC5600DC4B06 /* Attachment+Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -120,6 +129,7 @@
 				F9CD5D3E2679E5FA008AED32 /* BucketListDetail.swift */,
 				F9CD5D412679E61C008AED32 /* EditCocktail.swift */,
 				F9629756267A23A200BA814A /* CocktailView.swift */,
+				F9F9D423284E066100DC4B06 /* ImagePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -140,6 +150,9 @@
 			dependencies = (
 			);
 			name = "CocktailBucket (iOS)";
+			packageProductDependencies = (
+				F9F9D427284E06A300DC4B06 /* CropViewController */,
+			);
 			productName = "CocktailBucket (iOS)";
 			productReference = F9CD5D112679CBF0008AED32 /* CocktailBucket.app */;
 			productType = "com.apple.product-type.application";
@@ -188,6 +201,9 @@
 				Base,
 			);
 			mainGroup = F9CD5D012679CBEF008AED32;
+			packageReferences = (
+				F9F9D426284E06A300DC4B06 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+			);
 			productRefGroup = F9CD5D122679CBF0008AED32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -225,13 +241,15 @@
 				F9F9D41E28473D1F00DC4B06 /* Step+Extensions.swift in Sources */,
 				F9CD5D3F2679E5FA008AED32 /* BucketListDetail.swift in Sources */,
 				F9CD5D182679CBF0008AED32 /* CocktailBucket.xcdatamodeld in Sources */,
+				F9F9D424284E066100DC4B06 /* ImagePicker.swift in Sources */,
 				F9CD5D422679E61C008AED32 /* EditCocktail.swift in Sources */,
 				F9F9D41828466DB900DC4B06 /* Cocktail+Extensions.swift in Sources */,
 				F9CD5D1A2679CBF0008AED32 /* CocktailBucketApp.swift in Sources */,
 				F9F9D4122844B26800DC4B06 /* Persistence.swift in Sources */,
+				F9F9D421284DFC5600DC4B06 /* Attachment+Extensions.swift in Sources */,
 				F9629757267A23A200BA814A /* CocktailView.swift in Sources */,
 				F9F9D41B28473C7A00DC4B06 /* Ingredient+Extensions.swift in Sources */,
-				F9F9D41528466ACC00DC4B06 /* BucketListCD+Extensions.swift in Sources */,
+				F9F9D41528466ACC00DC4B06 /* BucketList+Extensions.swift in Sources */,
 				F9CD5D3C2679E5CE008AED32 /* Sidebar.swift in Sources */,
 				F9CD5D1C2679CBF0008AED32 /* ContentView.swift in Sources */,
 			);
@@ -244,13 +262,15 @@
 				F9F9D41F28473D1F00DC4B06 /* Step+Extensions.swift in Sources */,
 				F9CD5D402679E5FA008AED32 /* BucketListDetail.swift in Sources */,
 				F9CD5D192679CBF0008AED32 /* CocktailBucket.xcdatamodeld in Sources */,
+				F9F9D425284E066100DC4B06 /* ImagePicker.swift in Sources */,
 				F9CD5D432679E61C008AED32 /* EditCocktail.swift in Sources */,
 				F9F9D41928466DB900DC4B06 /* Cocktail+Extensions.swift in Sources */,
 				F9CD5D1B2679CBF0008AED32 /* CocktailBucketApp.swift in Sources */,
 				F9F9D4132844B26800DC4B06 /* Persistence.swift in Sources */,
+				F9F9D422284DFC5600DC4B06 /* Attachment+Extensions.swift in Sources */,
 				F9629758267A23A200BA814A /* CocktailView.swift in Sources */,
 				F9F9D41C28473C7A00DC4B06 /* Ingredient+Extensions.swift in Sources */,
-				F9F9D41628466ACC00DC4B06 /* BucketListCD+Extensions.swift in Sources */,
+				F9F9D41628466ACC00DC4B06 /* BucketList+Extensions.swift in Sources */,
 				F9CD5D3D2679E5CE008AED32 /* Sidebar.swift in Sources */,
 				F9CD5D1D2679CBF0008AED32 /* ContentView.swift in Sources */,
 			);
@@ -524,6 +544,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F9F9D426284E06A300DC4B06 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F9F9D427284E06A300DC4B06 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9F9D426284E06A300DC4B06 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F9CD5D072679CBEF008AED32 /* CocktailBucket.xcdatamodeld */ = {
