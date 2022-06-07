@@ -33,12 +33,14 @@ struct CocktailView: View {
                     Text("Ingredients").font(.title3).bold()
                 }
             
-                DisclosureGroup(isExpanded: $stepsExpanded) {
-                    ForEach(cocktail.wrappedSteps) { step in
-                        Text(step.markdown)
+                if !cocktail.wrappedSteps.isEmpty {
+                    DisclosureGroup(isExpanded: $stepsExpanded) {
+                        ForEach(cocktail.wrappedSteps) { step in
+                            Text(step.markdown)
+                        }
+                    } label: {
+                        Text("Steps").font(.title3).bold()
                     }
-                } label: {
-                    Text("Steps").font(.title3).bold()
                 }
             }
         }

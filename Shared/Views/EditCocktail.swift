@@ -40,6 +40,14 @@ struct EditCocktail: View {
     
     @FocusState private var focus: String?
     
+    private var validForm: Bool {
+        guard !name.trimmingCharacters(in: .whitespaces).isEmpty else { return false }
+        guard !ingredients.isEmpty else { return false }
+        guard ingredients.first(where: { $0.name.trimmingCharacters(in: .whitespaces).isEmpty }) == nil else { return false }
+        
+        return true
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -93,10 +101,16 @@ struct EditCocktail: View {
                         List($ingredients) { $ingredient in
                             IngredientView(ingredient: $ingredient, focus: $focus, addIngredient: addIngredient)
                         }
-                        Button("Add Ingredient", action: addIngredient)
                     }
                 } label: {
-                    Text("Ingredients").font(.title3).bold()
+                    HStack {
+                        Text("Ingredients").font(.title3).bold()
+                        Spacer()
+                        Button(action: addIngredient) {
+                            Image(systemName: "plus.app.fill")
+                                .imageScale(.large)
+                        }
+                    }
                 }
                 
                 DisclosureGroup(isExpanded: $stepsExpanded) {
@@ -108,10 +122,16 @@ struct EditCocktail: View {
                                 Divider()
                             }
                         }
-                        Button("Add Step", action: addStep)
                     }
                 } label: {
-                    Text("Steps").font(.title3).bold()
+                    HStack {
+                        Text("Steps").font(.title3).bold()
+                        Spacer()
+                        Button(action: addStep) {
+                            Image(systemName: "plus.app.fill")
+                                .imageScale(.large)
+                        }
+                    }
                 }
             }
             .navigationTitle("\(cocktail.uuid == nil ? "New" : "Update") Cocktail")
@@ -128,6 +148,7 @@ struct EditCocktail: View {
                         createOrUpdateCocktail()
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .disabled(!validForm)
                 }
             }
             .onAppear(perform: fetchCocktailData)
@@ -139,6 +160,8 @@ struct EditCocktail: View {
     }
     
     private func addIngredient() {
+        ingredientsExpanded = true
+        
         let id = UUID()
         ingredients.append(IngredientVO(id: id))
         
@@ -149,6 +172,8 @@ struct EditCocktail: View {
     }
     
     private func addStep() {
+        stepsExpanded = true
+        
         let id = UUID()
         steps.append(StepVO(id: id))
         
