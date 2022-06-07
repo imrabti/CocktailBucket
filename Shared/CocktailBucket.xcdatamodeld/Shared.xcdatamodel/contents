@@ -5,21 +5,21 @@
         <attribute name="thumbnail" optional="YES" transient="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformerName" customClassName="UIKit.UIImage"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="cocktail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cocktail" inverseName="attachments" inverseEntity="Cocktail"/>
-        <relationship name="imageData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ImageData" inverseName="attachment" inverseEntity="ImageData"/>
+        <relationship name="imageData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ImageData" inverseName="attachment" inverseEntity="ImageData"/>
     </entity>
     <entity name="BucketList" representedClassName="BucketList" syncable="YES" codeGenerationType="class">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="cocktails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Cocktail" inverseName="bucketList" inverseEntity="Cocktail"/>
+        <relationship name="cocktails" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Cocktail" inverseName="bucketList" inverseEntity="Cocktail"/>
     </entity>
     <entity name="Cocktail" representedClassName="Cocktail" syncable="YES" codeGenerationType="class">
         <attribute name="flags" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attachment" inverseName="cocktail" inverseEntity="Attachment"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="cocktail" inverseEntity="Attachment"/>
         <relationship name="bucketList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BucketList" inverseName="cocktails" inverseEntity="BucketList"/>
-        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="cocktail" inverseEntity="Ingredient"/>
-        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Step" inverseName="cocktail" inverseEntity="Step"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredient" inverseName="cocktail" inverseEntity="Ingredient"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Step" inverseName="cocktail" inverseEntity="Step"/>
     </entity>
     <entity name="ImageData" representedClassName="ImageData" syncable="YES" codeGenerationType="class">
         <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
@@ -38,11 +38,11 @@
         <relationship name="cocktail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cocktail" inverseName="steps" inverseEntity="Cocktail"/>
     </entity>
     <elements>
+        <element name="Attachment" positionX="-72" positionY="360" width="128" height="104"/>
         <element name="BucketList" positionX="-26.62109375" positionY="34.3515625" width="128" height="74"/>
-        <element name="Cocktail" positionX="29.6171875" positionY="243.25" width="128" height="148"/>
+        <element name="Cocktail" positionX="29.6171875" positionY="243.25" width="128" height="134"/>
+        <element name="ImageData" positionX="-81" positionY="342" width="128" height="59"/>
         <element name="Ingredient" positionX="-313.0078125" positionY="228.390625" width="128" height="104"/>
         <element name="Step" positionX="77.33203125" positionY="530.84765625" width="128" height="74"/>
-        <element name="ImageData" positionX="-81" positionY="342" width="128" height="59"/>
-        <element name="Attachment" positionX="-72" positionY="360" width="128" height="104"/>
     </elements>
 </model>
