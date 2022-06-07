@@ -12,6 +12,7 @@ struct IngredientVO: Codable, Identifiable {
     var name: String = ""
     var quantity: Double = Unit.ml.defaultQuantity
     var unit: Unit = .ml
+    var newItem: Bool
 }
 
 struct StepVO: Codable, Identifiable {
@@ -163,7 +164,7 @@ struct EditCocktail: View {
         ingredientsExpanded = true
         
         let id = UUID()
-        ingredients.append(IngredientVO(id: id))
+        ingredients.append(IngredientVO(id: id, newItem: true))
         
         // Workaround delay for the focus to work
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -194,7 +195,8 @@ struct EditCocktail: View {
                 id: $0.uuid!,
                 name: $0.wrappedName,
                 quantity: $0.quantity,
-                unit: $0.unitEnum
+                unit: $0.unitEnum,
+                newItem: false
             )
         }
         
@@ -309,26 +311,29 @@ struct IngredientView: View {
     var addIngredient: (() -> Void)
     
     var body: some View {
-        VStack {
-            HStack {
-                TextField("Ingredient", text: $ingredient.name)
-                    .autocapitalization(.words)
-                    .disableAutocorrection(true)
-                    .focused(focus, equals: ingredient.id.uuidString)
+        HStack {
+            TextField("Ingredient", text: $ingredient.name)
+                .autocapitalization(.words)
+                .disableAutocorrection(true)
+                .focused(focus, equals: ingredient.id.uuidString)
                 
-                TextField("Quantity", value: $ingredient.quantity, formatter: NumberFormatter())
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.decimalPad)
-                    .onSubmit(addIngredient)
+            TextField("Quantity", value: $ingredient.quantity, formatter: NumberFormatter())
+                .multilineTextAlignment(.trailing)
+                .keyboardType(.decimalPad)
+                .onSubmit(addIngredient)
                 
-                Picker(ingredient.unit.label, selection: $ingredient.unit) {
-                    ForEach(Unit.allCases, id: \.self) { item in
-                        Text(item.rawValue)
-                    }
+            Picker(ingredient.unit.label, selection: $ingredient.unit) {
+                ForEach(Unit.allCases, id: \.self) { item in
+                    Text(item.rawValue)
                 }
-                .pickerStyle(MenuPickerStyle())
             }
-            Divider()
+            .pickerStyle(MenuPickerStyle())
         }
+        .onChange(of: ingredient.unit) { newUnit in
+            guard ingredient.newItem else { return }
+            ingredient.quantity = newUnit.defaultQuantity
+        }
+        
+        Divider()
     }
 }
