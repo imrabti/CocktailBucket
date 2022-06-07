@@ -91,17 +91,9 @@ struct EditCocktail: View {
                 DisclosureGroup(isExpanded: $ingredientsExpanded) {
                     VStack {
                         List($ingredients) { $ingredient in
-                            IngredientView(focus: $focus, ingredient: $ingredient)
+                            IngredientView(ingredient: $ingredient, focus: $focus, addIngredient: addIngredient)
                         }
-                        Button("Add Ingredient") {
-                            let id = UUID()
-                            ingredients.append(IngredientVO(id: id))
-                            
-                            // Workaround delay for the focus to work
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                focus = id.uuidString
-                            }
-                        }
+                        Button("Add Ingredient", action: addIngredient)
                     }
                 } label: {
                     Text("Ingredients").font(.title3).bold()
@@ -116,15 +108,7 @@ struct EditCocktail: View {
                                 Divider()
                             }
                         }
-                        Button("Add Step") {
-                            let id = UUID()
-                            steps.append(StepVO(id: id))
-                            
-                            // Workaround delay for the focus to work
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                focus = id.uuidString
-                            }
-                        }
+                        Button("Add Step", action: addStep)
                     }
                 } label: {
                     Text("Steps").font(.title3).bold()
@@ -151,6 +135,26 @@ struct EditCocktail: View {
                 ImagePicker(image: $picture, pictureHash: $pictureHash, sourceType: $sourceType)
                     .edgesIgnoringSafeArea(.all)
             }
+        }
+    }
+    
+    private func addIngredient() {
+        let id = UUID()
+        ingredients.append(IngredientVO(id: id))
+        
+        // Workaround delay for the focus to work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            focus = id.uuidString
+        }
+    }
+    
+    private func addStep() {
+        let id = UUID()
+        steps.append(StepVO(id: id))
+        
+        // Workaround delay for the focus to work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            focus = id.uuidString
         }
     }
     
@@ -274,8 +278,10 @@ struct EditCocktail: View {
 
 struct IngredientView: View {
     
-    var focus: FocusState<String?>.Binding
     @Binding var ingredient: IngredientVO
+    
+    var focus: FocusState<String?>.Binding
+    var addIngredient: (() -> Void)
     
     var body: some View {
         VStack {
@@ -288,6 +294,7 @@ struct IngredientView: View {
                 TextField("Quantity", value: $ingredient.quantity, formatter: NumberFormatter())
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
+                    .onSubmit(addIngredient)
                 
                 Picker(ingredient.unit.label, selection: $ingredient.unit) {
                     ForEach(Unit.allCases, id: \.self) { item in
