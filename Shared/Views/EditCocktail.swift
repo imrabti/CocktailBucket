@@ -10,7 +10,7 @@ import SwiftUI
 struct IngredientVO: Codable, Identifiable {
     var id: UUID
     var name: String = ""
-    var quantity: Double?
+    var quantity: Double = Unit.ml.defaultQuantity
     var unit: Unit = .ml
 }
 
@@ -186,14 +186,14 @@ struct EditCocktail: View {
             if let existing = cocktail.wrappedIngredients.first(where: { $0.uuid == ingredient.id }) {
                 existing.name = ingredient.name
                 existing.unitEnum = ingredient.unit
-                existing.quantity = ingredient.quantity ?? 0
+                existing.quantity = ingredient.quantity
             } else {
                 let newIngredient = Ingredient(context: viewContext)
                 newIngredient.uuid = ingredient.id
                 newIngredient.cocktail = cocktail
                 newIngredient.name = ingredient.name
                 newIngredient.unitEnum = ingredient.unit
-                newIngredient.quantity = ingredient.quantity ?? 0
+                newIngredient.quantity = ingredient.quantity
             }
         }
         
