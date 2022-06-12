@@ -23,6 +23,8 @@
 		F9CD5D402679E5FA008AED32 /* BucketListDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D3E2679E5FA008AED32 /* BucketListDetail.swift */; };
 		F9CD5D422679E61C008AED32 /* EditCocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D412679E61C008AED32 /* EditCocktail.swift */; };
 		F9CD5D432679E61C008AED32 /* EditCocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD5D412679E61C008AED32 /* EditCocktail.swift */; };
+		F9DCF6932850A4000068AE34 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DCF6922850A4000068AE34 /* CloudKit.framework */; };
+		F9DCF6962850A40F0068AE34 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DCF6952850A40F0068AE34 /* CloudKit.framework */; };
 		F9F9D4122844B26800DC4B06 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D4112844B26800DC4B06 /* Persistence.swift */; };
 		F9F9D4132844B26800DC4B06 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D4112844B26800DC4B06 /* Persistence.swift */; };
 		F9F9D41528466ACC00DC4B06 /* BucketList+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F9D41428466ACC00DC4B06 /* BucketList+Extensions.swift */; };
@@ -51,6 +53,11 @@
 		F9CD5D3B2679E5CE008AED32 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		F9CD5D3E2679E5FA008AED32 /* BucketListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListDetail.swift; sourceTree = "<group>"; };
 		F9CD5D412679E61C008AED32 /* EditCocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCocktail.swift; sourceTree = "<group>"; };
+		F9DCF68F2850A3EE0068AE34 /* CocktailBucket--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "CocktailBucket--iOS--Info.plist"; sourceTree = "<group>"; };
+		F9DCF6902850A3FC0068AE34 /* CocktailBucket (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CocktailBucket (iOS).entitlements"; sourceTree = "<group>"; };
+		F9DCF6922850A4000068AE34 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.5.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		F9DCF6942850A40B0068AE34 /* CocktailBucket (macOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CocktailBucket (macOS).entitlements"; sourceTree = "<group>"; };
+		F9DCF6952850A40F0068AE34 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F9F9D4112844B26800DC4B06 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F9F9D41428466ACC00DC4B06 /* BucketList+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BucketList+Extensions.swift"; sourceTree = "<group>"; };
 		F9F9D41728466DB900DC4B06 /* Cocktail+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cocktail+Extensions.swift"; sourceTree = "<group>"; };
@@ -66,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F9D428284E06A300DC4B06 /* CropViewController in Frameworks */,
+				F9DCF6932850A4000068AE34 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9DCF6962850A40F0068AE34 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,8 +91,12 @@
 		F9CD5D012679CBEF008AED32 = {
 			isa = PBXGroup;
 			children = (
+				F9DCF6942850A40B0068AE34 /* CocktailBucket (macOS).entitlements */,
+				F9DCF6902850A3FC0068AE34 /* CocktailBucket (iOS).entitlements */,
+				F9DCF68F2850A3EE0068AE34 /* CocktailBucket--iOS--Info.plist */,
 				F9CD5D062679CBEF008AED32 /* Shared */,
 				F9CD5D122679CBF0008AED32 /* Products */,
+				F9DCF6912850A4000068AE34 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +145,15 @@
 				F9F9D423284E066100DC4B06 /* ImagePicker.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F9DCF6912850A4000068AE34 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9DCF6952850A40F0068AE34 /* CloudKit.framework */,
+				F9DCF6922850A4000068AE34 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,11 +421,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "CocktailBucket (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5VTM8F229V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CocktailBucket--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -429,11 +453,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "CocktailBucket (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5VTM8F229V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CocktailBucket--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -460,6 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "CocktailBucket (macOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -489,6 +516,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "CocktailBucket (macOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
