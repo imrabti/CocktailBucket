@@ -243,7 +243,6 @@ struct EditCocktail: View {
         createOrUpdateCocktailPicture()
         
         try? viewContext.save()
-        viewContext.reset()
     }
     
     private func createOrUpdateCocktailPicture() {

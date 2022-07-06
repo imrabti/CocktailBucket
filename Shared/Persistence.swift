@@ -8,6 +8,10 @@
 import Foundation
 import CoreData
 
+// MARK: - Creating Contexts
+
+let appTransactionAuthorName = "app"
+
 class PersistenceController: ObservableObject {
     static let shared = PersistenceController()
     
@@ -26,16 +30,32 @@ class PersistenceController: ObservableObject {
         return url
     }()
     
-    let container: NSPersistentContainer
+    let container: NSPersistentCloudKitContainer
     
     init() {
-        container = NSPersistentContainer(name: "CocktailBucket")
+        container = NSPersistentCloudKitContainer(name: "CocktailBucket")
+        
+        let privateStoreDescription = container.persistentStoreDescriptions.first!
+        let storesURL = privateStoreDescription.url!.deletingLastPathComponent()
+        privateStoreDescription.url = storesURL.appendingPathComponent("private.sqlite")
+        privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        container.viewContext.transactionAuthor = appTransactionAuthorName
+        
+        // Pin the viewContext to the current generation token and set it to keep itself up to date with local changes.
         container.viewContext.automaticallyMergesChangesFromParent = true
+        do {
+            try container.viewContext.setQueryGenerationFrom(.current)
+        } catch {
+            fatalError("###\(#function): Failed to pin viewContext to the current generation:\(error)")
+        }
     }
 }
